@@ -1,7 +1,7 @@
 {
   "version": "1.0.3",
   "chainId": 11124,
-  "generatedAt": "2026-04-03T20:01:37.870Z",
+  "generatedAt": "2026-04-03T20:02:57.222Z",
   "contracts": [
     {
       "name": "Hello",
@@ -2526,7 +2526,7 @@
         }
       ],
       "version": "1.0.3",
-      "deployedAt": "2026-04-03T20:01:37.870Z"
+      "deployedAt": "2026-04-03T20:02:57.222Z"
     }
   ]
 }
