@@ -1,7 +1,7 @@
 {
   "version": "1.0.2",
   "chainId": 11124,
-  "generatedAt": "2026-03-18T18:25:23.630Z",
+  "generatedAt": "2026-04-03T20:00:58.818Z",
   "contracts": [
     {
       "name": "Hello",
@@ -33,6 +33,32 @@
         {
           "type": "function",
           "name": "BASE_PRICE_SECOND_HALF",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "DEFAULT_BATTLE_LIQUIDITY_LOW_WATERMARK",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "DEFAULT_BATTLE_LIQUIDITY_RESUME_WATERMARK",
           "inputs": [],
           "outputs": [
             {
@@ -127,6 +153,45 @@
           ],
           "outputs": [],
           "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "battleLiquidityHalted",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "battleLiquidityLowWatermark",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "battleLiquidityResumeWatermark",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "view"
         },
         {
           "type": "function",
@@ -455,6 +520,19 @@
         {
           "type": "function",
           "name": "getContractBalance",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
+          "name": "getCurrentBattleLiquidity",
           "inputs": [],
           "outputs": [
             {
@@ -907,6 +985,19 @@
         },
         {
           "type": "function",
+          "name": "liquidityLogic",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "stateMutability": "view"
+        },
+        {
+          "type": "function",
           "name": "operator",
           "inputs": [],
           "outputs": [
@@ -1210,6 +1301,24 @@
         },
         {
           "type": "function",
+          "name": "setBattleLiquidityThresholds",
+          "inputs": [
+            {
+              "name": "lowWatermark",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "resumeWatermark",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
           "name": "setBattleLogic",
           "inputs": [
             {
@@ -1240,6 +1349,19 @@
           "inputs": [
             {
               "name": "entropyAddress",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "setLiquidityLogic",
+          "inputs": [
+            {
+              "name": "newLogic",
               "type": "address",
               "internalType": "address"
             }
@@ -1421,6 +1543,105 @@
               "type": "bool",
               "indexed": false,
               "internalType": "bool"
+            }
+          ],
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "name": "BattleLiquidityHaltTriggered",
+          "inputs": [
+            {
+              "name": "roundNumber",
+              "type": "uint256",
+              "indexed": true,
+              "internalType": "uint256"
+            },
+            {
+              "name": "availableLiquidity",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            },
+            {
+              "name": "requiredLiquidity",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            },
+            {
+              "name": "timestamp",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            }
+          ],
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "name": "BattleLiquidityResumed",
+          "inputs": [
+            {
+              "name": "roundNumber",
+              "type": "uint256",
+              "indexed": true,
+              "internalType": "uint256"
+            },
+            {
+              "name": "availableLiquidity",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            },
+            {
+              "name": "resumeThreshold",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            },
+            {
+              "name": "timestamp",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            }
+          ],
+          "anonymous": false
+        },
+        {
+          "type": "event",
+          "name": "BattleLiquidityThresholdsUpdated",
+          "inputs": [
+            {
+              "name": "oldLowWatermark",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            },
+            {
+              "name": "newLowWatermark",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            },
+            {
+              "name": "oldResumeWatermark",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            },
+            {
+              "name": "newResumeWatermark",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
+            },
+            {
+              "name": "timestamp",
+              "type": "uint256",
+              "indexed": false,
+              "internalType": "uint256"
             }
           ],
           "anonymous": false
@@ -2153,6 +2374,16 @@
         },
         {
           "type": "error",
+          "name": "LiquidityLogicNotContract",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "LiquidityLogicNotSet",
+          "inputs": []
+        },
+        {
+          "type": "error",
           "name": "NoActiveRound",
           "inputs": []
         },
@@ -2295,7 +2526,7 @@
         }
       ],
       "version": "1.0.2",
-      "deployedAt": "2026-03-18T18:25:23.630Z"
+      "deployedAt": "2026-04-03T20:00:58.818Z"
     }
   ]
 }
