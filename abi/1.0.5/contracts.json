@@ -1,7 +1,7 @@
 {
   "version": "1.0.5",
   "chainId": 11124,
-  "generatedAt": "2026-04-29T09:18:10.664Z",
+  "generatedAt": "2026-04-29T09:19:32.260Z",
   "contracts": [
     {
       "name": "Keima",
@@ -2632,7 +2632,7 @@
         }
       ],
       "version": "1.0.5",
-      "deployedAt": "2026-04-29T09:18:10.664Z"
+      "deployedAt": "2026-04-29T09:19:32.260Z"
     }
   ]
 }
